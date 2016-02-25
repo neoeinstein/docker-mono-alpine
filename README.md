@@ -1,6 +1,5 @@
-[![Docker Stars](https://img.shields.io/docker/stars/frolvlad/alpine-mono.svg?style=flat-square)](https://hub.docker.com/r/frolvlad/alpine-mono/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/frolvlad/alpine-mono.svg?style=flat-square)](https://hub.docker.com/r/frolvlad/alpine-mono/)
-
+[![Docker Stars](https://img.shields.io/docker/stars/neoeinstein/mono-alpine.svg?style=flat-square)](https://hub.docker.com/r/neoeinstein/mono-alpine/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/neoeinstein/mono-alpine.svg?style=flat-square)](https://hub.docker.com/r/neoeinstein/mono-alpine/)
 
 Mono (C#) Docker image
 ======================
@@ -8,21 +7,24 @@ Mono (C#) Docker image
 This image is based on Alpine Linux image, which is only a 5MB image, and contains
 [Mono](http://www.mono-project.com/).
 
+This image is based on the image developed by [frolvad](https://hub.docker.com/r/frolvlad/alpine-mono/).
+
 Total size of this image is only:
 
-[![](https://badge.imagelayers.io/frolvlad/alpine-mono:latest.svg)](https://imagelayers.io/?images=frolvlad/alpine-mono:latest 'Get your own badge on imagelayers.io')
+[![](https://badge.imagelayers.io/neoeinstein/mono-alpine:4.2.2.30-2.svg)](https://imagelayers.io/?images=neoeinstein/mono-alpine:4.2.2.30-2 'Get your own badge on imagelayers.io')
 
 WARNING: This mono was compiled for Arch Linux and is ported to Alpine via
-[glibc hack](https://github.com/gliderlabs/docker-alpine/issues/11)! Ideally,
-Mono package should be added to Alpine repo, but I don't have much time now.
+[glibc hack](https://github.com/gliderlabs/docker-alpine/issues/11)!
 
+The mono package has been added to Alpine Linux, but has certain issues with
+segfaults when compiling the F# compiler.
 
 Usage Example
 -------------
 
 ```bash
 $ echo 'using System; class MainClass { public static void Main (string[] args) { Console.WriteLine ("Hello World"); } }' > qq.mono
-$ docker run --rm -v "$(pwd)":/mnt frolvlad/alpine-mono sh -c "mcs -out:/mnt/qq.exe /mnt/qq.mono && mono /mnt/qq.exe"
+$ docker run --rm -v "$(pwd)":/mnt neoeinstein/mono-alpine sh -c "mcs -out:/mnt/qq.exe /mnt/qq.mono && mono /mnt/qq.exe"
 ```
 
 Once you have run these commands you will have `qq.exe` mono-executable in your
